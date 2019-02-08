@@ -12,17 +12,20 @@ randomVector = (vector: VectorType) => {
 };
 
 export const move = (particle: ParticleType): ParticleType => {
-  const acceleration = particle.randomAcceleration !== undefined
-    ? add(particle.acceleration, randomVector(particle.randomAcceleration))
-    : particle.acceleration;
+  const acceleration =
+    particle.randomAcceleration !== undefined
+      ? add(particle.acceleration, randomVector(particle.randomAcceleration))
+      : particle.acceleration;
   let velocity = multiply(
     add(particle.velocity, acceleration),
     particle.damping !== undefined ? particle.damping : 1
   );
   const position = add(particle.position, velocity);
 
-  let angularVelocity = particle.angularVelocity !== undefined ? particle.angularVelocity : 0;
-  angularVelocity *=  particle.angularDamping !== undefined ? particle.angularDamping : 1;
+  let angularVelocity =
+    particle.angularVelocity !== undefined ? particle.angularVelocity : 0;
+  angularVelocity *=
+    particle.angularDamping !== undefined ? particle.angularDamping : 1;
   let rotation = particle.rotation !== undefined ? particle.rotation : 0;
   rotation += angularVelocity !== undefined ? angularVelocity : 0;
   let size = particle.size !== undefined ? particle.size : 1;

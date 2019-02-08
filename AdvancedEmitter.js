@@ -148,7 +148,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       const path: VectorType[] = [];
       const scale: number[] = [];
       const rotation: number[] = [];
-      const particleMovement: ParticleType = particle;
+      let particleMovement: ParticleType = particle;
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
         scale.push(particleMovement.scale);
