@@ -90,11 +90,11 @@ export default class AnimatedParticle extends React.Component<
           translateY: animatedValue.interpolate(translateY)
         },
         {
-          scale: 2 //animatedValue.interpolate(scale)
+          scale: animatedValue.interpolate(scale)
+        },
+        {
+          rotate: animatedValue.interpolate(rotation)
         }
-        // {
-        //   rotate: animatedValue.interpolate(rotation)
-        // }
       ]
     };
 

@@ -11,6 +11,7 @@ import type { ParticleType } from './entities/Particle';
 import type { BaseEmitterType } from './BaseEmitter';
 import BaseEmitter from './BaseEmitter';
 import type { RangeType } from '.entities/Range';
+import { Range } from './entities/Range';
 
 randomRange = (range: RangeType) => {
   return Math.random() * (range.max - range.min) + range.min;
@@ -54,7 +55,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
   static defaultProps = {
     gravity: 0.2,
     segments: 10,
-    speed: { min: 0, max: 1 },
+    speed: Range(1, 1),
     size: Vector(10, 10),
     randomAcceleration: Vector(0, 0),
     damping: Vector(1, 1),
