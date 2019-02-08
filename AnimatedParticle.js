@@ -22,6 +22,8 @@ export interface IAnimatedParticle {
   /** Start the animation on the initialization */
   autoStart: boolean;
 
+  delay: number;
+
   /** Start the animation on the initialization */
   style: any;
 

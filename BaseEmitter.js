@@ -13,6 +13,9 @@ const windowDimensions = Dimensions.get('window');
 export type BaseEmitterType = {
   /** Start emitting particles after initialization */
   autoStart?: boolean,
+
+  delay?: number,
+
   /** The total of particles to be emitted */
   numberOfParticles: number,
   /** Interval between emitting a new batch of particles */
@@ -71,6 +74,7 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
 
   static defaultProps = {
     autoStart: true,
+    delay: 0,
     width: windowDimensions.width,
     height: windowDimensions.height,
     fromPosition: Vector(0, 0)
@@ -92,7 +96,9 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
       particleLife,
       children,
       particleContainerStyle,
-      onAnimate
+      onAnimate,
+      autoStart,
+      delay,
     } = this.props;
     const { visibleParticles } = this.state;
 
@@ -109,9 +115,10 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
         scale={obj.scale}
         rotation={obj.rotation}
         lifetime={particleLife}
-        autoStart={true}
+        autoStart={autoStart}
         onLifeEnds={this._destroyParticle(obj.particle)}
         onAnimate={onAnimate}
+        delay={delay}
       >
         {child}
       </AnimatedParticle>
@@ -148,10 +155,12 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
   }
 
   start() {
-    this.isEmitting = true;
-    this.particlesCounter = 0;
-    this.particles = [];
-    this._loop();
+    setTimeout(this.props.delay, () => {
+      this.isEmitting = true;
+      this.particlesCounter = 0;
+      this.particles = [];
+      this._loop();
+    });
   }
 
   _loop() {
