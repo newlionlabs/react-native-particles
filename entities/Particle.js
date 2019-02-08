@@ -5,7 +5,7 @@ import type { VectorType } from './Vector';
 export type ParticleType = {
   velocity: VectorType,
   acceleration: VectorType,
-  id: number
+  id: number,
   position: VectorType,
   // Advanced:
   size: number,
