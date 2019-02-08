@@ -120,7 +120,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       /*
                       first step - Emit new particles
                      */
-      console.log('1');  
+      console.log('1');
       const initialSpeed = randomRange(speed);
       console.log('2', scale);
       const initialScale = randomRange(scale);
@@ -157,7 +157,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
         scalePath.push(particleMovement.scale);
-        rotationPath.push(particleMoveent.rotation);
+        rotationPath.push(particleMovement.rotation);
         particleMovement = move(particleMovement);
       }
       newParticles.push({
@@ -170,7 +170,6 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
 
     return newParticles;
   };
-
 
   _animateParticle = (path, transformValue, opacityValue) => {
     const { particleLife } = this.props;
