@@ -7,9 +7,17 @@ import type { InterpolationConfigType } from 'react-native/Libraries/Animated/sr
 import type { Element } from 'react';
 import type { VectorType } from './entities/Vector';
 
+export type ParticleKeyframeType = {
+  position: VectorType[],
+  scale: number[],
+  rotation: number[],
+};
+
 export interface IAnimatedParticle {
   /** Number of particles to emit */
   path: VectorType[];
+  scale: number[];
+  rotation: number[];
 
   /** The position from where the particles should be generated */
   lifetime: number;
@@ -31,11 +39,15 @@ interface IAnimatedParticleState {
   opacityValue: Animated.Value;
   translateX: InterpolationConfigType;
   translateY: InterpolationConfigType;
+  scale: InterpolationConfigType;
+  rotate: InterpolationConfigType;
 }
 
 type InterpolationConfig = {
   translateX: InterpolationConfigType,
   translateY: InterpolationConfigType
+  scale: InterpolationConfigType;
+  rotate: InterpolationConfigType;
 };
 
 export default class AnimatedParticle extends React.Component<
@@ -61,6 +73,8 @@ export default class AnimatedParticle extends React.Component<
       translateX,
       translateY,
       opacityValue,
+      scale,
+      rotate,
       style
     } = this.state;
 
@@ -72,6 +86,12 @@ export default class AnimatedParticle extends React.Component<
         },
         {
           translateY: animatedValue.interpolate(translateY)
+        },
+        {
+          scale: animatedValue.interpolate(scale)
+        },
+        {
+          rotate: animatedValue.interpolate(rotation)
         }
       ]
     };
@@ -89,7 +109,7 @@ export default class AnimatedParticle extends React.Component<
   }
 
   start = () => {
-    const { path, onLifeEnds, onAnimate } = this.props;
+    const { path, scale, rotation, onLifeEnds, onAnimate } = this.props;
     const { animatedValue, opacityValue } = this.state;
 
     this.animation =
@@ -100,27 +120,39 @@ export default class AnimatedParticle extends React.Component<
     });
   };
 
-  _createInterpolations = (path: VectorType[]): InterpolationConfig => {
+  _createInterpolations = (path: VectorType[], scale: number[], rotation: number[]): InterpolationConfig => {
     const segments = path.length;
 
     const inputRange: number[] = new Array(segments);
-    const outputRangeX: number[] = new Array(segments);
-    const outputRangeY: number[] = new Array(segments);
+    const outputRangeTranslateX: number[] = new Array(segments);
+    const outputRangeTranslateY: number[] = new Array(segments);
+    const outputRangeScale: number[] = new Array(segments);
+    const outputRangeRotate: number[] = new Array(segments);
 
     for (let i = 0; i < path.length; i++) {
       inputRange[i] = i;
-      outputRangeX[i] = path[i].x;
-      outputRangeY[i] = path[i].y;
+      outputRangeTranslateX[i] = path[i].x;
+      outputRangeTranslateY[i] = path[i].y;
+      outputRangeScale[i] = scale[i];
+      outputRangeRotate[i] = rotation[i];
     }
 
     return {
       translateX: {
         inputRange,
-        outputRange: outputRangeX
+        outputRange: outputRangeTranslateX
       },
       translateY: {
         inputRange,
-        outputRange: outputRangeY
+        outputRange: outputRangeTranslateY
+      },
+      scale: {
+        inputRange,
+        outputRange: outputRangeScale
+      },
+      rotate: {
+        inputRange,
+        outputRange: outputRangeRotate
       }
     };
   };

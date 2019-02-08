@@ -1,17 +1,25 @@
 //@flow
 import { Particle } from './../entities/Particle';
-import { add } from './vector-helpers';
-
+import { add, multiply } from './vector-helpers';
+import { Vector } from './../entities/Vector';
+import type { VectorType } from './../entities/Vector';
 import type { ParticleType } from './../entities/Particle';
 
-export const move = (particle: ParticleType): ParticleType => {
-  // Calculate the velocity by adding acceleration
-  const velocity = add(particle.velocity, particle.acceleration);
+randomVector = (vector: VectorType) => {
+  const x = (Math.random() * 2 - 1) * vector.x;
+  const y = (Math.random() * 2 - 1) * vector.y;
+  return Vector(x,y);
+};
 
-  // Calculate the new position
+export const move = (particle: ParticleType): ParticleType => {
+  const acceleration = add(particle.acceleration, randomVector(particle.randomAcceleration));
+  let velocity = multiply(add(particle.velocity, acceleration), particle.damping);
   const position = add(particle.position, velocity);
 
-  return Particle(velocity, particle.acceleration, particle.id, position);
+  const angularVelocity = particle.angularVelocity * particle.angularDamping;
+  const rotation = particle.rotation + angularVelocity;
+  const size = Math.max(0, particle.size + sizeGrow); // TODO make this affected by delta time
+  return Particle(velocity, particle.acceleration, particle.id, position, size, rotation, angularVelocity, particle.randomAcceleration, particle.damping, particle.angularDamping, particle.sizeGrow);
 };
 
 export default Particle;
