@@ -56,7 +56,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
     gravity: 0.2,
     segments: 10,
     speed: Range(1, 1),
-    size: Vector(10, 10),
+    size: Range(1, 1),
     randomAcceleration: Vector(0, 0),
     damping: Vector(1, 1),
     sizeGrow: 0,
