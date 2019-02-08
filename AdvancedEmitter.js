@@ -54,10 +54,10 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
   static defaultProps = {
     gravity: 0.2,
     segments: 10,
-    speed: {min: 0, max: 1},
+    speed: { min: 0, max: 1 },
     size: Vector(10, 10),
     randomAcceleration: Vector(0, 0),
-    damping: Vector(1,1),
+    damping: Vector(1, 1),
     sizeGrow: 0,
     randomVelocity: Vector(0, 0),
     velocity: Vector(0, 0),
@@ -107,7 +107,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       randomizeRotation,
       angularVelocity,
       angularDamping,
-      randomAngularVelocity,
+      randomAngularVelocity
     } = this.props;
 
     // if we're at our max, stop emitting.
@@ -120,8 +120,11 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
                      */
       const initialSpeed = randomRange(speed);
       const initialSize = randomRange(size);
-      let initialRotation = randomizeRotation ? Math.random() * Math.PI * 2 : rotation;
-      const initialAngularVelocity = angularVelocity + randomFactor(randomAngularVelocity);
+      let initialRotation = randomizeRotation
+        ? Math.random() * Math.PI * 2
+        : rotation;
+      const initialAngularVelocity =
+        angularVelocity + randomFactor(randomAngularVelocity);
 
       const particle = emitParticleAdvanced(
         initialPosition,
@@ -143,14 +146,20 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       // Calculate the particle path
       // TODO: Improve the performance currently O(n2)
       let path: VectorType[] = [];
+      let scale: number[] = [];
+      let rotation: number[] = [];
       let particleMovement: ParticleType = particle;
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
+        scale.push(particleMovement.scale);
+        rotation.push(particleMovement.rotation);
         particleMovement = move(particleMovement);
       }
       newParticles.push({
         particle,
-        path
+        path,
+        scale,
+        rotation
       });
     }
 
