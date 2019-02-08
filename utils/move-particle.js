@@ -43,7 +43,6 @@ export const move = (particle: ParticleType): ParticleType => {
     particle.angularDamping,
     particle.scaleGrow
   );
-  console.log('Move Particle', particle, movedParticle);
   return movedParticle;
 };
 

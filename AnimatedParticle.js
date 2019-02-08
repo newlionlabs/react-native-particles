@@ -78,8 +78,6 @@ export default class AnimatedParticle extends React.Component<
       style
     } = this.state;
 
-    console.log('AnimatedParticle Render', this.props, this.state);
-
     const animatedStyle = {
       opacity: opacityValue,
       transform: [

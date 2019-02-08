@@ -114,17 +114,13 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
     // if we're at our max, stop emitting.
     const rate = Math.min(numberOfParticles, emissionRate);
     const newParticles = [];
-    console.log('calculate - scale', scale);
     // for [emissionRate], emit a particle
     for (let j = 0; j < rate; j++) {
       /*
                       first step - Emit new particles
                      */
-      console.log('1');
       const initialSpeed = randomRange(speed);
-      console.log('2', scale);
       const initialScale = randomRange(scale);
-      console.log('3');
       let initialRotation = randomizeRotation
         ? Math.random() * Math.PI * 2
         : rotation;
