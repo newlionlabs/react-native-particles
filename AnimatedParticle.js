@@ -93,7 +93,7 @@ export default class AnimatedParticle extends React.Component<
     };
 
     return (
-      <Animated.View style={[styles.particle, animatedStyle, style]}>
+      <Animated.View style={[styles.particle, animatedStyle, style]} pointerEvents="none">
         {children}
       </Animated.View>
     );
