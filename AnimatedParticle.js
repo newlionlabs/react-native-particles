@@ -74,7 +74,7 @@ export default class AnimatedParticle extends React.Component<
       translateY,
       opacityValue,
       scale,
-      rotate,
+      rotation,
       style
     } = this.state;
 
@@ -154,7 +154,7 @@ export default class AnimatedParticle extends React.Component<
         inputRange,
         outputRange: outputRangeScale
       },
-      rotate: {
+      rotation: {
         inputRange,
         outputRange: outputRangeRotate
       }
