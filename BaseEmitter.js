@@ -104,6 +104,8 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
         style={particleContainerStyle}
         key={obj.particle.id}
         path={obj.path}
+        scale={obj.scale}
+        rotation={obj.rotation}
         lifetime={particleLife}
         autoStart={true}
         onLifeEnds={this._destroyParticle(obj.particle)}
@@ -195,10 +197,10 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
     this.setState({
       visibleParticles: this.particles
         // Remove the particles out of bounds
-        .filter(p => {
-          const { x, y } = p.particle.position;
-          return x >= 0 && x <= width && y >= 0 && y <= height;
-        })
+        // .filter(p => {
+        //   const { x, y } = p.particle.position;
+        //   return x >= 0 && x <= width && y >= 0 && y <= height;
+        // })
     });
   }
 
