@@ -47,7 +47,7 @@ export type ParticleConfig = {
   particle: ParticleType,
   path: VectorType[],
   scale: number[],
-  rotation: number[],
+  rotation: number[]
 };
 
 class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
