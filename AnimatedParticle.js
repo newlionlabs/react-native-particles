@@ -40,14 +40,14 @@ interface IAnimatedParticleState {
   translateX: InterpolationConfigType;
   translateY: InterpolationConfigType;
   scale: InterpolationConfigType;
-  rotate: InterpolationConfigType;
+  rotation: InterpolationConfigType;
 }
 
 type InterpolationConfig = {
   translateX: InterpolationConfigType,
   translateY: InterpolationConfigType,
   scale: InterpolationConfigType,
-  rotate: InterpolationConfigType
+  rotation: InterpolationConfigType
 };
 
 export default class AnimatedParticle extends React.Component<
