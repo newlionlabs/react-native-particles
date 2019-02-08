@@ -62,7 +62,7 @@ export default class AnimatedParticle extends React.Component<
     this.state = {
       animatedValue: new Animated.Value(0),
       opacityValue: new Animated.Value(1),
-      ...this._createInterpolations(props.path)
+      ...this._createInterpolations(props.path, props.scale, props.rotation)
     };
   }
 
