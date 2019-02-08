@@ -114,6 +114,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
     // if we're at our max, stop emitting.
     const rate = Math.min(numberOfParticles, emissionRate);
     const newParticles = [];
+    console.log('calculate - scale', scale);
     // for [emissionRate], emit a particle
     for (let j = 0; j < rate; j++) {
       /*
