@@ -5,7 +5,7 @@ export type RangeType = {
 };
 
 // Constructor helper
-export const Range = (min: number = 0, max: number = 1): VectorType => ({
+export const Range = (min: number = 0, max: number = 1): RangeType => ({
   min,
   max
 });

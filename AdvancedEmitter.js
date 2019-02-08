@@ -120,7 +120,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
                       first step - Emit new particles
                      */
       const initialSpeed = randomRange(speed);
-      const initialscale = randomRange(scale);
+      const initialScale = randomRange(scale);
       let initialRotation = randomizeRotation
         ? Math.random() * Math.PI * 2
         : rotation;
@@ -135,7 +135,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
         Vector(0, gravity),
         // Particle id
         particlesCounter + j,
-        initialscale,
+        initialScale,
         initialRotation,
         initialAngularVelocity,
         randomAcceleration,
