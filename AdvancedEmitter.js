@@ -145,10 +145,10 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
 
       // Calculate the particle path
       // TODO: Improve the performance currently O(n2)
-      let path: VectorType[] = [];
-      let scale: number[] = [];
-      let rotation: number[] = [];
-      let particleMovement: ParticleType = particle;
+      const path: VectorType[] = [];
+      const scale: number[] = [];
+      const rotation: number[] = [];
+      const particleMovement: ParticleType = particle;
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
         scale.push(particleMovement.scale);
