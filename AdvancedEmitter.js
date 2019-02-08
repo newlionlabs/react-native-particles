@@ -12,8 +12,6 @@ import type { BaseEmitterType } from './BaseEmitter';
 import BaseEmitter from './BaseEmitter';
 import type { RangeType } from '.entities/Range';
 
-import { Vector } from './entities/Vector';
-
 randomRange = (range: RangeType) => {
   return Math.random() * (range.max - range.min) + range.min;
 };
