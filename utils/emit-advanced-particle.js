@@ -11,13 +11,13 @@ const emitAdvancedParticle = function(
   spread: number = Math.PI / 32,
   acceleration: VectorType,
   id: number,
-  size: number,
+  scale: number,
   rotation: number,
   angularVelocity: number,
   randomAcceleration: VectorType,
   damping: VectorType,
   angularDamping: number,
-  sizeGrow: number
+  scaleGrow: number
 ): ParticleType {
   // Use an angle randomized over the spread so we have more of a "spray"
   const angle = getAngle(velocity) + spread - Math.random() * spread * 2;
@@ -34,13 +34,13 @@ const emitAdvancedParticle = function(
     acceleration,
     id,
     position,
-    size,
+    scale,
     rotation,
     angularVelocity,
     randomAcceleration,
     damping,
     angularDamping,
-    sizeGrow
+    scaleGrow
   );
 };
 

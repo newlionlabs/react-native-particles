@@ -34,11 +34,11 @@ export type AdvancedEmitterType = BaseEmitterType & {
   segments?: number,
 
   //Advanced
-  size?: RangeType,
+  scale?: RangeType,
 
   randomAcceleration?: VectorType,
   damping?: VectorType,
-  sizeGrow?: number,
+  scaleGrow?: number,
   randomVelocity?: VectorType,
   velocity?: VectorType,
 
@@ -56,10 +56,10 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
     gravity: 0.2,
     segments: 10,
     speed: Range(1, 1),
-    size: Range(1, 1),
+    scale: Range(1, 1),
     randomAcceleration: Vector(0, 0),
     damping: Vector(1, 1),
-    sizeGrow: 0,
+    scaleGrow: 0,
     randomVelocity: Vector(0, 0),
     velocity: Vector(0, 0),
     rotation: 0,
@@ -98,10 +98,10 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       spread,
       gravity,
       segments,
-      size,
+      scale,
       randomAcceleration,
       damping,
-      sizeGrow,
+      scaleGrow,
       randomVelocity,
       velocity,
       rotation,
@@ -120,7 +120,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
                       first step - Emit new particles
                      */
       const initialSpeed = randomRange(speed);
-      const initialSize = randomRange(size);
+      const initialscale = randomRange(scale);
       let initialRotation = randomizeRotation
         ? Math.random() * Math.PI * 2
         : rotation;
@@ -135,13 +135,13 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
         Vector(0, gravity),
         // Particle id
         particlesCounter + j,
-        initialSize,
+        initialscale,
         initialRotation,
         initialAngularVelocity,
         randomAcceleration,
         damping,
         angularDamping,
-        sizeGrow
+        scaleGrow
       );
 
       // Calculate the particle path

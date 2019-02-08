@@ -8,13 +8,13 @@ export type ParticleType = {
   id: number,
   position: VectorType,
   // Advanced:
-  size: number,
+  scale: number,
   rotation: number,
   angularVelocity: number,
   randomAcceleration: VectorType,
   damping: VectorType,
   angularDamping: number,
-  sizeGrow: number
+  scaleGrow: number
 };
 
 export const Particle = (
@@ -22,23 +22,23 @@ export const Particle = (
   acceleration: VectorType = Vector(0, 0),
   id: number,
   position?: VectorType = Vector(0, 0),
-  size?: number,
+  scale?: number,
   rotation?: number,
   angularVelocity?: number,
   randomAcceleration?: number,
   damping?: VectorType,
   angularDamping?: number,
-  sizeGrow?: number
+  scaleGrow?: number
 ): ParticleType => ({
   position,
   velocity,
   acceleration,
   id,
-  size,
+  scale,
   rotation,
   angularVelocity,
   randomAcceleration,
   damping,
   angularDamping,
-  sizeGrow
+  scaleGrow
 });
