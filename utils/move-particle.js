@@ -12,19 +12,21 @@ randomVector = (vector: VectorType) => {
 };
 
 export const move = (particle: ParticleType): ParticleType => {
-  const acceleration = particle.randomAcceleration
+  const acceleration = particle.randomAcceleration !== undefined
     ? add(particle.acceleration, randomVector(particle.randomAcceleration))
     : particle.acceleration;
   let velocity = multiply(
     add(particle.velocity, acceleration),
-    particle.damping || 1
+    particle.damping !== undefined ? particle.damping : 1
   );
   const position = add(particle.position, velocity);
 
-  const angularVelocity =
-    particle.angularVelocity || 0 * particle.angularDamping || 0;
-  const rotation = particle.rotation || 0 + angularVelocity;
-  const size = Math.max(0, particle.size + particle.sizeGrow || 0); // TODO make this affected by delta time
+  let angularVelocity = particle.angularVelocity !== undefined ? particle.angularVelocity : 0;
+  angularVelocity *=  particle.angularDamping !== undefined ? particle.angularDamping : 1;
+  let rotation = particle.rotation !== undefined ? particle.rotation : 0;
+  rotation += angularVelocity !== undefined ? angularVelocity : 0;
+  let size = particle.size !== undefined ? particle.size : 1;
+  size += particle.sizeGrow !== undefined ? particle.sizeGrow : 0; // TODO make this affected by delta time
   return Particle(
     velocity,
     particle.acceleration,
