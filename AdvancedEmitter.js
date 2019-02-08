@@ -45,7 +45,7 @@ export type AdvancedEmitterType = BaseEmitterType & {
   randomizeRotation?: boolean,
   angularVelocity?: number,
   angularDamping?: number,
-  randomAngularVelocity?: number,
+  randomAngularVelocity?: number
 };
 
 export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
