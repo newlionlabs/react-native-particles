@@ -180,4 +180,4 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
   }
 }
 
-export default Emitter;
+export default AdvancedEmitter;
