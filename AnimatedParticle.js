@@ -78,6 +78,8 @@ export default class AnimatedParticle extends React.Component<
       style
     } = this.state;
 
+    console.log('AnimatedParticle Render', this.props, this.state);
+
     const animatedStyle = {
       opacity: opacityValue,
       transform: [
@@ -88,7 +90,7 @@ export default class AnimatedParticle extends React.Component<
           translateY: animatedValue.interpolate(translateY)
         },
         {
-          scale: 2//animatedValue.interpolate(scale)
+          scale: 2 //animatedValue.interpolate(scale)
         }
         // {
         //   rotate: animatedValue.interpolate(rotation)
@@ -109,7 +111,7 @@ export default class AnimatedParticle extends React.Component<
   }
 
   start = () => {
-    const { path, scale, rotation, onLifeEnds, onAnimate } = this.props;
+    const { path, onLifeEnds, onAnimate } = this.props;
     const { animatedValue, opacityValue } = this.state;
 
     this.animation =

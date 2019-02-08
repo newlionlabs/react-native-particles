@@ -36,7 +36,7 @@ export type BaseEmitterType = {
   /** Function to calculate a new bunch of particles */
   onCalculate: (position: VectorType, count: number) => ParticleConfig[],
   /** Function used to animate particles */
-  onAnimate: (Animated.Value, Animated.Value) => void
+  onAnimate: (VectorType[], Animated.Value, Animated.Value) => void
 };
 
 type BaseEmitterState = {
