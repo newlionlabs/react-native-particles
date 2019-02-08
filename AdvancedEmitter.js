@@ -120,8 +120,11 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       /*
                       first step - Emit new particles
                      */
+      console.log('1');  
       const initialSpeed = randomRange(speed);
+      console.log('2', scale);
       const initialScale = randomRange(scale);
+      console.log('3');
       let initialRotation = randomizeRotation
         ? Math.random() * Math.PI * 2
         : rotation;
@@ -148,25 +151,26 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       // Calculate the particle path
       // TODO: Improve the performance currently O(n2)
       const path: VectorType[] = [];
-      const scale: number[] = [];
-      const rotation: number[] = [];
+      const scalePath: number[] = [];
+      const rotationPath: number[] = [];
       let particleMovement: ParticleType = particle;
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
-        scale.push(particleMovement.scale);
-        rotation.push(particleMovement.rotation);
+        scalePath.push(particleMovement.scale);
+        rotationPath.push(particleMoveent.rotation);
         particleMovement = move(particleMovement);
       }
       newParticles.push({
         particle,
         path,
-        scale,
-        rotation
+        scale: scalePath,
+        rotation: rotationPath
       });
     }
 
     return newParticles;
   };
+
 
   _animateParticle = (path, transformValue, opacityValue) => {
     const { particleLife } = this.props;
