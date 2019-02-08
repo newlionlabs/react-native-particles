@@ -27,7 +27,7 @@ export const move = (particle: ParticleType): ParticleType => {
   angularVelocity *=
     particle.angularDamping !== undefined ? particle.angularDamping : 1;
   let rotation = particle.rotation !== undefined ? particle.rotation : 0;
-  rotation += angularVelocity !== undefined ? angularVelocity : 0;
+  rotation += angularVelocity;
   let scale = particle.scale !== undefined ? particle.scale : 1;
   scale *= particle.scaleGrow !== undefined ? particle.scaleGrow : 1; // TODO make this affected by delta time
   const movedParticle = Particle(

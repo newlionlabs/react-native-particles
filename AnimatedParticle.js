@@ -7,17 +7,11 @@ import type { InterpolationConfigType } from 'react-native/Libraries/Animated/sr
 import type { Element } from 'react';
 import type { VectorType } from './entities/Vector';
 
-export type ParticleKeyframeType = {
-  position: VectorType[],
-  scale: number[],
-  rotation: number[]
-};
-
 export interface IAnimatedParticle {
   /** Number of particles to emit */
   path: VectorType[];
   scale: number[];
-  rotation: number[];
+  rotation: string[];
 
   /** The position from where the particles should be generated */
   lifetime: number;
@@ -91,7 +85,7 @@ export default class AnimatedParticle extends React.Component<
           scale: animatedValue.interpolate(scale)
         },
         {
-          rotate: `${animatedValue.interpolate(rotation).toString()}rad`
+          rotate: animatedValue.interpolate(rotation)
         }
       ]
     };

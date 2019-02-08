@@ -122,7 +122,10 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       const initialSpeed = randomRange(speed);
       let initialVelocity = fromAngle(toRadians(direction), initialSpeed);
       initialVelocity = add(initialVelocity, velocity);
-      const randomizedVelocity = Vector(randomFactor(randomVelocity.x), randomFactor(randomVelocity.y));
+      const randomizedVelocity = Vector(
+        randomFactor(randomVelocity.x),
+        randomFactor(randomVelocity.y)
+      );
       initialVelocity = add(initialVelocity, randomizedVelocity);
 
       const initialScale = randomRange(scale);
@@ -153,12 +156,12 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
       // TODO: Improve the performance currently O(n2)
       const path: VectorType[] = [];
       const scalePath: number[] = [];
-      const rotationPath: number[] = [];
+      const rotationPath: string[] = [];
       let particleMovement: ParticleType = particle;
       for (let j = 0; j < segments; j++) {
         path.push(particleMovement.position);
         scalePath.push(particleMovement.scale);
-        rotationPath.push(particleMovement.rotation);
+        rotationPath.push(`${particleMovement.rotation}rad`);
         particleMovement = move(particleMovement);
       }
       newParticles.push({
