@@ -10,7 +10,7 @@ import type { VectorType } from './entities/Vector';
 export type ParticleKeyframeType = {
   position: VectorType[],
   scale: number[],
-  rotation: number[],
+  rotation: number[]
 };
 
 export interface IAnimatedParticle {
@@ -120,7 +120,11 @@ export default class AnimatedParticle extends React.Component<
     });
   };
 
-  _createInterpolations = (path: VectorType[], scale: number[], rotation: number[]): InterpolationConfig => {
+  _createInterpolations = (
+    path: VectorType[],
+    scale: number[],
+    rotation: number[]
+  ): InterpolationConfig => {
     const segments = path.length;
 
     const inputRange: number[] = new Array(segments);

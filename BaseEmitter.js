@@ -45,7 +45,9 @@ type BaseEmitterState = {
 
 export type ParticleConfig = {
   particle: ParticleType,
-  path: VectorType[]
+  path: VectorType[],
+  scale: number[],
+  rotation: number[],
 };
 
 class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
@@ -196,11 +198,11 @@ class BaseEmitter extends React.Component<BaseEmitterType, BaseEmitterState> {
     // Filter the visible particles
     this.setState({
       visibleParticles: this.particles
-        // Remove the particles out of bounds
-        // .filter(p => {
-        //   const { x, y } = p.particle.position;
-        //   return x >= 0 && x <= width && y >= 0 && y <= height;
-        // })
+      // Remove the particles out of bounds
+      // .filter(p => {
+      //   const { x, y } = p.particle.position;
+      //   return x >= 0 && x <= width && y >= 0 && y <= height;
+      // })
     });
   }
 

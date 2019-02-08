@@ -9,8 +9,10 @@ export const getMagnitude = (vector: VectorType): number =>
 export const add = (vectorA: VectorType, vectorB: VectorType): VectorType =>
   Vector(vectorA.x + vectorB.x, vectorA.y + vectorB.y);
 
-export const multiply = (vectorA: VectorType, vectorB: VectorType): VectorType =>
-  Vector(vectorA.x * vectorB.x, vectorA.y * vectorB.y);
+export const multiply = (
+  vectorA: VectorType,
+  vectorB: VectorType
+): VectorType => Vector(vectorA.x * vectorB.x, vectorA.y * vectorB.y);
 
 // Gets the angle accounting for the quadrant we're in
 export const getAngle = (vector: VectorType): number =>
