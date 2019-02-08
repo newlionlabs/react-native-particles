@@ -29,7 +29,7 @@ export const move = (particle: ParticleType): ParticleType => {
   let rotation = particle.rotation !== undefined ? particle.rotation : 0;
   rotation += angularVelocity !== undefined ? angularVelocity : 0;
   let scale = particle.scale !== undefined ? particle.scale : 1;
-  scale += particle.scaleGrow !== undefined ? particle.scaleGrow : 0; // TODO make this affected by delta time
+  scale *= particle.scaleGrow !== undefined ? particle.scaleGrow : 1; // TODO make this affected by delta time
   const movedParticle = Particle(
     velocity,
     particle.acceleration,

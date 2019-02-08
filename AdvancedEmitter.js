@@ -3,7 +3,7 @@ import type { Element } from 'react';
 import React from 'react';
 import { Animated, Easing } from 'react-native';
 import { Vector } from './entities/Vector';
-import { fromAngle, toRadians } from './utils/vector-helpers';
+import { fromAngle, toRadians, add } from './utils/vector-helpers';
 import { move } from './utils/move-particle';
 import emitParticleAdvanced from './utils/emit-advanced-particle';
 import type { VectorType } from './entities/Vector';
@@ -120,6 +120,11 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
                       first step - Emit new particles
                      */
       const initialSpeed = randomRange(speed);
+      let initialVelocity = fromAngle(toRadians(direction), initialSpeed);
+      initialVelocity = add(initialVelocity, velocity);
+      const randomizedVelocity = Vector(randomFactor(randomVelocity.x), randomFactor(randomVelocity.y));
+      initialVelocity = add(initialVelocity, randomizedVelocity);
+
       const initialScale = randomRange(scale);
       let initialRotation = randomizeRotation
         ? Math.random() * Math.PI * 2
@@ -129,7 +134,7 @@ export class AdvancedEmitter extends React.Component<AdvancedEmitterType> {
 
       const particle = emitParticleAdvanced(
         initialPosition,
-        fromAngle(toRadians(direction), initialSpeed),
+        initialVelocity,
         toRadians(spread),
         //Apply gravity to the vertical axis
         Vector(0, gravity),
